@@ -60,9 +60,10 @@ $(document).ready(function(){
 </head>
 <body>
   Hello World!!
-  <form:form method="POST"  action="/json-db-translation/service">
+  <form method="POST"  action="/service">
   	<input type="submit" value="action"/>
-  </form:form>
+  </form>
+  
     <button> click</button><br/>
   <button id="ajax">ajax call</button>
   <button id="json">json</button>

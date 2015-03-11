@@ -15,7 +15,7 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index() {
-		return "/WEB-INF/jsp/index.jsp";
+		return "index";
 	}
 	
 	/*@RequestMapping(value="/products", method = RequestMethod.POST)
