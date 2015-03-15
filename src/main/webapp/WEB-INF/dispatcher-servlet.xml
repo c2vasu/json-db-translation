@@ -30,4 +30,15 @@
 		    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
 		</bean>
 		
+		    
+	    <!-- <bean
+	        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	        <property name="prefix">
+	            <value>/WEB-INF/jsp/</value>
+	        </property>
+	        <property name="suffix">
+	            <value>.jsp</value>
+	        </property>
+	    </bean>-->
+		
 </beans>

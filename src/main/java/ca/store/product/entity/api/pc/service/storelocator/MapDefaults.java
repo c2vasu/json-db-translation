@@ -1,6 +1,5 @@
 package ca.store.product.entity.api.pc.service.storelocator;
 
-import ca.store.product.entity.Center;
 
 public class MapDefaults {
 

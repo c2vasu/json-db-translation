@@ -1,4 +1,4 @@
-package ca.store.product.entity;
+package ca.store.product.entity.api.pc.service.storelocator;
 
 public class Center {
 
