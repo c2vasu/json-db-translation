@@ -1,6 +1,29 @@
 package ca.store.product.entity.list;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CHILDREN")
 public class Children {
+	
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Column(name = "CHILDREN_ID_CU")
+	private int index;
 	
 	private String id;
 
@@ -11,9 +34,10 @@ public class Children {
     private String topRated;
 
     private String name;
-
-    private Children children[];
-
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<Children> children = new ArrayList<Children>();
+    
     private String href;
 
     public String getId ()
@@ -66,17 +90,23 @@ public class Children {
         this.name = name;
     }
 
-    public Children[] getChildren ()
-    {
-        return children;
-    }
+    public int getIndex() {
+		return index;
+	}
 
-    public void setChildren (Children children[])
-    {
-        this.children = children;
-    }
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
-    public String getHref ()
+	public Collection<Children> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Collection<Children> children) {
+		this.children = children;
+	}
+
+	public String getHref ()
     {
         return href;
     }

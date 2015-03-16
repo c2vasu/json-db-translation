@@ -1,7 +1,26 @@
 package ca.store.product.entity.list;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "FACET")
 public class Facets {
-	
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Column(name = "FACET_ID_CS")
+	private int index;
+
 	private String id;
 
     private Boolean selected;
@@ -11,11 +30,20 @@ public class Facets {
     private String topRated;
 
     private String name;
-
-    private Children[] children;
-
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    //private Children[] children;
+    private Collection<Children> children = new ArrayList<Children>();
+    
     private String href;
+    
+    public int getIndex() {
+		return index;
+	}
 
+	public void setIndex(int index) {
+		this.index = index;
+	}
     public String getId ()
     {
         return id;
@@ -65,18 +93,17 @@ public class Facets {
     {
         this.name = name;
     }
+    
 
-    public Children[] getChildren ()
-    {
-        return children;
-    }
+    public Collection<Children> getChildren() {
+		return children;
+	}
 
-    public void setChildren (Children[] children)
-    {
-        this.children = children;
-    }
+	public void setChildren(Collection<Children> children) {
+		this.children = children;
+	}
 
-    public String getHref ()
+	public String getHref ()
     {
         return href;
     }

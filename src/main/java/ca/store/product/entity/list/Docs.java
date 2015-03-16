@@ -1,18 +1,32 @@
 package ca.store.product.entity.list;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "DOCS")
 public class Docs {
 	
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Column(name = "DOCS_ID_CU")
+	private int index;
+	
 	private String tagLabel;
-
-    private String desc;
+	@Column(name = "DOCS1")
+	private String desc;
 
     private String img;
 
     private String fullDesc;
 
-    private String numRating;
+	private String numRating;
 
-    private String ct;
+    private boolean ct;
 
     private String articlebodyleft;
 
@@ -26,7 +40,7 @@ public class Docs {
 
     private String shortTitle;
 
-    private String bl;
+    private boolean bl;
 
     private String path;
 
@@ -35,8 +49,17 @@ public class Docs {
     private String shortName;
 
     private String imgTitle;
+   
 
-    public String getTagLabel ()
+    public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getTagLabel ()
     {
         return tagLabel;
     }
@@ -45,16 +68,13 @@ public class Docs {
     {
         this.tagLabel = tagLabel;
     }
+    public String getDesc() {
+		return desc;
+	}
 
-    public String getDesc ()
-    {
-        return desc;
-    }
-
-    public void setDesc (String desc)
-    {
-        this.desc = desc;
-    }
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
     public String getImg ()
     {
@@ -86,17 +106,23 @@ public class Docs {
         this.numRating = numRating;
     }
 
-    public String getCt ()
-    {
-        return ct;
-    }
+    public boolean isCt() {
+		return ct;
+	}
 
-    public void setCt (String ct)
-    {
-        this.ct = ct;
-    }
+	public void setCt(boolean ct) {
+		this.ct = ct;
+	}
 
-    public String getArticlebodyleft ()
+	public boolean isBl() {
+		return bl;
+	}
+
+	public void setBl(boolean bl) {
+		this.bl = bl;
+	}
+
+	public String getArticlebodyleft ()
     {
         return articlebodyleft;
     }
@@ -154,16 +180,6 @@ public class Docs {
     public void setShortTitle (String shortTitle)
     {
         this.shortTitle = shortTitle;
-    }
-
-    public String getBl ()
-    {
-        return bl;
-    }
-
-    public void setBl (String bl)
-    {
-        this.bl = bl;
     }
 
     public String getPath ()

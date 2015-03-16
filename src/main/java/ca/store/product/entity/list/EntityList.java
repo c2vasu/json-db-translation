@@ -1,13 +1,42 @@
 package ca.store.product.entity.list;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ENTITY_LIST")
 public class EntityList {
-
+	
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Column(name = "ENTITY_LIST_ID_CU")
+	private int index;
+	
     private String suggestionText;
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<CatFacets> catFacets = new ArrayList<CatFacets>();
+    //private CatFacets[] catFacets;
 
-    private CatFacets[] catFacets;
-
-    private Docs[] docs;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<Docs> docs = new ArrayList<Docs>();
+    
+    @ManyToOne(optional=false, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private TagFacet tagFacet;
 
     private String numFound;
@@ -22,32 +51,37 @@ public class EntityList {
         this.suggestionText = suggestionText;
     }
 
-    public CatFacets[] getCatFacets ()
-    {
-        return catFacets;
-    }
-
-    public void setCatFacets (CatFacets[] catFacets)
-    {
-        this.catFacets = catFacets;
-    }
-
-    public Docs[] getDocs ()
-    {
-        return docs;
-    }
-
-    public void setDocs (Docs[] docs)
-    {
-        this.docs = docs;
-    }
-
     public TagFacet getTagFacet ()
     {
         return tagFacet;
     }
+    
 
-    public void setTagFacet (TagFacet tagFacet)
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public Collection<CatFacets> getCatFacets() {
+		return catFacets;
+	}
+
+	public void setCatFacets(Collection<CatFacets> catFacets) {
+		this.catFacets = catFacets;
+	}
+
+	public Collection<Docs> getDocs() {
+		return docs;
+	}
+
+	public void setDocs(Collection<Docs> docs) {
+		this.docs = docs;
+	}
+
+	public void setTagFacet (TagFacet tagFacet)
     {
         this.tagFacet = tagFacet;
     }
@@ -60,11 +94,5 @@ public class EntityList {
     public void setNumFound (String numFound)
     {
         this.numFound = numFound;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [suggestionText = "+suggestionText+", catFacets = "+catFacets+", docs = "+docs+", tagFacet = "+tagFacet+", numFound = "+numFound+"]";
     }
 }

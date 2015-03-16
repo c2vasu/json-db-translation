@@ -1,4 +1,4 @@
-package ca.cloudunity.community.client;
+package ca.cloudunity.community.parser;
 
 
 import java.io.BufferedReader;
@@ -31,7 +31,7 @@ import ca.store.product.dto.InputOutputEntityListDTO;
 import ca.store.product.entity.Product;
 import ca.store.product.entity.list.EntityList;
 
-public class JsonParserClient {
+public class JsonJdbcParserClient {
 
 	static final String WRITE_OBJECT_SQL = "INSERT INTO Entity_List_JSON_CU(serviceUrl,rows,sort,start,tag,view,entity_list_json) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = ?";
@@ -52,7 +52,7 @@ public static void main(String[] args) {
 		
 		System.out.println("===================Start==================");
 
-		for(int index =0; index<=96;index++){
+		for(int index =0; index<=7;index++){
 			String startValue = Integer.toString(index*9);
 			System.out.println("index :"+index + " startValue :"+startValue);
 			//to increment by multiple of 9
@@ -61,7 +61,7 @@ public static void main(String[] args) {
 			pojo.setServiceUrl("http://www.nofrills.ca/banners/content/v1/listing/en_CA/nofrills/products");
 			pojo.setStart(startValue);
 			pojo.setSort("lastModified");
-			pojo.setTag("lclonline/Product_Category/Grocery");
+			pojo.setTag("lclonline/Product_Category/Bakery");
 			pojo.setRows("9");
 			pojo.setView("grid");
 			String response = getEntityList(pojo);

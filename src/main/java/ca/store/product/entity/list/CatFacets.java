@@ -1,6 +1,28 @@
 package ca.store.product.entity.list;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CAT_FACETS")
 public class CatFacets {
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Column(name = "CAT_FACETS_ID_CS")
+	private int index;
 	
 	private String id;
 
@@ -12,8 +34,10 @@ public class CatFacets {
 
     private String name;
 
-    private Children children[];
-
+    //private Children children[];
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<Children> children = new ArrayList<Children>();
+    
     private String href;
 
     public String getId ()
@@ -21,7 +45,23 @@ public class CatFacets {
         return id;
     }
 
-    public void setId (String id)
+    public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public Collection<Children> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Collection<Children> children) {
+		this.children = children;
+	}
+
+	public void setId (String id)
     {
         this.id = id;
     }
@@ -66,16 +106,6 @@ public class CatFacets {
         this.name = name;
     }
 
-    public Children[] getChildren ()
-    {
-        return children;
-    }
-
-    public void setChildren (Children children[])
-    {
-        this.children = children;
-    }
-
     public String getHref ()
     {
         return href;
@@ -84,11 +114,5 @@ public class CatFacets {
     public void setHref (String href)
     {
         this.href = href;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [id = "+id+", selected = "+selected+", count = "+count+", topRated = "+topRated+", name = "+name+", children = "+children+", href = "+href+"]";
     }
 }
